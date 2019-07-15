@@ -1,0 +1,58 @@
+引用变量
+$b = $a;(两个变量共用一个存储空间，只有当$a的值改变时才会另开辟一块地址，也就是copy on write
+$b = &$a;(两个变量永远都共用一个存储空间
+$b = &$a; unset($b);(unset只会取消引用 ，不会销毁值
+
+memory_get_usage()
+php查看内存使用情况的函数
+
+$_SERVER
+http://www.imooc.com/index.php/use/reg?status=ghost
+/index.php    $_SERVER['REQUEST_URI']
+use/reg       $_SERVER['PATH_INFO']
+status=ghost  $_SERVER['QUERY_STRING']
+服务器地址    $_SERVER['SERVER_ADDR']
+客户端地址    $_SERVER['REMOTE_ADDR']
+
+预定义常量
+__FILE__  __LINE__  __DIR__  __FUNCTION__  __CLASS__  __TRAIT__  __METHOD__  __NAMESPACE__
+
+Spl数据结构类
+栈：$stack = new SplStack();
+    $stack->push('aaa');
+    $stack->pop();
+队列：$queue = new SplQueue();
+      $queue->enqueue('aaa');
+      $queue->dequeue();
+最小堆：$heap = new SplMinHeap();
+    $heap->insert('aaa');
+    $heap->extract();
+固定长度的数组：$array = new SplFixedArray(10);
+                $array[0] = 'aaa';
+
+设计模式
+1.工厂模式，工厂方法或者类生成对象，而不是在代码中直接new。如果类的名字或者参数发生变化，不必更改项目中所有相关的地方。
+2.单例模式，使某个类的对象仅允许创建一个
+3.注册模式，全局共享和交换对象
+4.适配器模式，可以将截然不同的函数接口封装成统一的API，比如mysql,mysqli,pdo可以用适配器模式统一成一致。
+5.策略模式，将一组特定的行为和算法封装成类，以适应某些特定的上下文环境，这种模式就是策略模式。比如一个电商网站系统，针对男性女性用户要各自跳转到不同的商品类目，并且所有广告位展示不同的广告。
+6.数据对象映射模式，是将对象和数据存储映射起来，对一个对象的操作会映射为对数据存储的操作。
+7.观察者模式，当一个对象状态发生改变时，依赖它的对象全部会收到通知，并自动更新。
+8.原型模式，与工厂模式作用类似，但它是先创建好一个原型对象，通过clone创建新对象。这样就免去了类创建时重复的初始化操作。适用于大对象的创建，创建大对象需要很大开销，每次new消耗很大，原型模式仅需内存拷贝即可。
+9.装饰器模式，动态地添加修改类的功能。传统的做法是写一个子类继承，而装饰器模式仅需在运行时添加一个装饰器对象即可实现。
+10.迭代器模式，在不需要了解内部实现的前提下，遍历一个聚合对象的内部元素。可以隐藏遍历元素所需的操作。
+
+PSR-0规范
+1.命名空间必须与绝对路径一致
+2.类名首字母必须大写
+3.除入口文件外，其他.php必须只有一个类
+开发符合PSR-0规范的基础框架
+1.全部使用命名空间
+2.所有PHP文件必须自动载入，不能有include，require
+3.单一入口 (index.php)
+
+魔术方法
+__set  __get
+__call  __callStatic
+__toString  当把对象当做字符串处理时调用此方法，比如echo $obj;
+__invock  当把对象当做函数用的时候调用此方法，比如$obj();
