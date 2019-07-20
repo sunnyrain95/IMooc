@@ -3,6 +3,11 @@ define('BASEDIR', __DIR__);
 include BASEDIR.'/IMooc/Loader.php';
 spl_autoload_register('\\IMooc\\Loader::autoload');
 
+//自动加载配置
+$config = new \IMooc\Config(__DIR__.'/configs');
+var_dump($config['controller']);
+
+
 //工厂模式实例化对象
 // $db = IMooc\Factory::createDatabase();
 
